@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BillSplitter.MainPage"
+             BackgroundColor="#303030">
+    
+    <ContentPage.Resources>
+        <Color x:Key="Prime">#1560BD</Color> 
+        <Color x:Key="Frames">#454545</Color>
+        <Color x:Key="Secondary">#1E90FF</Color>
+    </ContentPage.Resources>
+
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".3*"/>
+            <RowDefinition Height=".7*"/>
+        </Grid.RowDefinitions>
+        <Frame Padding="10"
+               BackgroundColor="{StaticResource Frames}"
+               BorderColor="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*"/>
+                    <RowDefinition Height=".8*"/>
+                    <RowDefinition Height=".1*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.ColumnSpan="3"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Secondary}"
+                       HorizontalTextAlignment="Center"
+                       Text="TOTAL PER PERSON"/>
+                <Label x:Name="lbTotal"
+                       Grid.Row="1"
+                       FontAttributes="Bold"
+                       FontSize="45"
+                       HorizontalTextAlignment="Center"
+                       Text="$0.00"
+                       TextColor="White"
+                       VerticalOptions="CenterAndExpand"/>
+                <BoxView Grid.Column="1"
+                         Grid.Row="1"
+                         Margin="0,15"
+                         VerticalOptions="Center"
+                         Color="White"/>
+                <VerticalStackLayout Grid.Column="2"
+                                     Grid.Row="1"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                    
+                    <Label Text="SUBTOTAL"
+                           TextColor="White"/>
+                    
+                    <Label x:Name="lbSubtotal"
+                           FontAttributes="Bold"
+                           Text="$0.00"
+                           TextColor="White"/>
+
+                    <Label Margin="0,10,0,0"
+                           Text="TIP"
+                           TextColor="White"/>
+
+                    <Label x:Name="lbTipByPerson"
+                           FontAttributes="Bold"
+                           Text="$0.00"
+                           TextColor="White"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+        
+        <Grid Grid.Row="1"
+              Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".4*"/>
+                <ColumnDefinition Width=".6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Text="Enter your bill: "
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+            
+            <Entry x:Name="txtBill"
+                   Grid.Column="1"
+                   BackgroundColor="{StaticResource Frames}"
+                   Keyboard="Numeric"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   WidthRequest="200"
+                   Completed="txtBill_Completed"/>
+            
+            <Label Grid.Row="1"
+                   Text="Choose your tip:"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+            
+            <HorizontalStackLayout Grid.Row="1"
+                                   Grid.Column="1"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HeightRequest="60"
+                                   Spacing="10">
+                
+                <Button Text="10%" WidthRequest="60" BackgroundColor="{StaticResource Prime}" Clicked="Button_Clicked"/>
+                
+                <Button Text="15%" WidthRequest="60" BackgroundColor="{StaticResource Prime}" Clicked="Button_Clicked"/>
+                
+                <Button Text="20%" WidthRequest="60" BackgroundColor="{StaticResource Prime}" Clicked="Button_Clicked"/>
+            </HorizontalStackLayout>
+            
+            <Label x:Name="lblTip"
+                   Grid.Row="2"
+                   Text="Tip: 0%"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+            
+            <Slider x:Name="sldTip"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Maximum="50"
+                    Minimum="0"
+                    WidthRequest="230"
+                    ThumbColor="{StaticResource Secondary}"
+                    MinimumTrackColor="{StaticResource Prime}"
+                    ValueChanged="Slider_ValueChanged"/>
+            
+            <Label Grid.Row="3"
+                   Text="Split the total:"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+            
+            <HorizontalStackLayout Grid.Row="3" 
+                                   Grid.Column="1"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                
+                <Button x:Name="btnMinus"
+                        Text="-"
+                        WidthRequest="55"
+                        FontSize="25"
+                        BackgroundColor="{StaticResource Prime}"
+                        Clicked="btnMinus_Clicked"/>
+                
+                <Label x:Name="lblNoPersons"
+                       Margin="-5,0,-5,0"
+                       BackgroundColor="{StaticResource Frames}"
+                       FontSize="25"
+                       HeightRequest="50"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Text="1"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       VerticalTextAlignment="Center"
+                       WidthRequest="100"/>
+                
+                <Button x:Name="btnPlus"
+                        Text="+"
+                        WidthRequest="55"
+                        FontSize="25"
+                        BackgroundColor="{StaticResource Prime}"
+                        Clicked="btnPlus_Clicked"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>
